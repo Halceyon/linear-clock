@@ -1,9 +1,7 @@
 import { createI18n } from 'vue-i18n';
-import af from './locales/af.json';
 import en from './locales/en.json';
 
 const messages = {
-  af,
   en
 };
 

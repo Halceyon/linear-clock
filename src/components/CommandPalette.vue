@@ -8,12 +8,9 @@ import {
   CommandList,
   CommandSeparator
 } from '@/components/ui/command';
-import type { SelectedItemBus, SelectedItemRoute } from '@/types';
+import type { SelectedItemBus } from '@/types';
 import { useEventBus, useMagicKeys } from '@vueuse/core';
 import { onMounted, ref, watch } from 'vue';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
 
 const open = ref(false);
 
@@ -41,25 +38,13 @@ function onOpenChange() {
 function onCommandSelected(selectedValue: any) {
   const { value } = selectedValue.detail;
 
-  const routerSelectedItemValue = value as SelectedItemRoute;
-  if (routerSelectedItemValue) {
-    router.push({ name: routerSelectedItemValue.pathName });
-    open.value = false;
-  }
-
   const selectedItemBusValue = value as SelectedItemBus;
   if (selectedItemBusValue) {
     const bus = useEventBus(selectedItemBusValue.busName);
     bus.emit(selectedItemBusValue.value);
   }
 }
-
-const suggestions = [
-  { value: 'projects', label: 'Projects', pathName: 'ProjectHome' }
-] as SelectedItemRoute[];
-
-const actions = [{ value: 'logout', label: 'Logout', busName: 'app:auth' }] as SelectedItemBus[];
-
+const suggestions = ref([] as SelectedItemBus[]);
 onMounted(() => {
   commandPaletteBus.on(() => {
     open.value = true;
@@ -74,17 +59,6 @@ onMounted(() => {
       <CommandGroup heading="Suggestions">
         <CommandItem
           v-for="item in suggestions"
-          :key="item.value"
-          :value="item"
-          @select="onCommandSelected"
-        >
-          {{ item.label }}
-        </CommandItem>
-      </CommandGroup>
-      <CommandSeparator />
-      <CommandGroup heading="Actions">
-        <CommandItem
-          v-for="item in actions"
           :key="item.value"
           :value="item"
           @select="onCommandSelected"

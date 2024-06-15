@@ -2,6 +2,8 @@ import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { useEventBus } from '@vueuse/core';
 import AppEvents from './AppEvents.vue';
+import type { NotificationMessage } from '@/types';
+import { Button } from './ui/button';
 
 const notificationBus = useEventBus('app:notification');
 
@@ -52,43 +54,6 @@ export const Notifications: Story = {
             description: 'This is an error notification.',
             type: 'error'
           } as NotificationMessage);
-        }
-      };
-    }
-  })
-};
-
-export const Logout: Story = {
-  render: () => ({
-    components: { AppEvents, Button },
-    template: `
-                <div> \
-                    <AppEvents /> \
-                    <Button @click="simulateLogout" type="button">Simulate Logout</Button> \
-                </div>
-                `,
-    setup() {
-      return {
-        simulateLogout() {
-          authEventBus.emit('logout');
-        }
-      };
-    }
-  })
-};
-export const Login: Story = {
-  render: () => ({
-    components: { AppEvents, Button },
-    template: `
-                <div> \
-                    <AppEvents /> \
-                    <Button @click="simulateLogin" type="button">Simulate Login</Button> \
-                </div>
-                `,
-    setup() {
-      return {
-        simulateLogin() {
-          authEventBus.emit('login', 'marvin@codehq.co.za');
         }
       };
     }

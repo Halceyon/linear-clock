@@ -1,10 +1,4 @@
 {
-  "buttons": {
-    "login": "Login",
-    "register": "Register",
-    "create": "Create",
-    "save": "Save"
-  },
   "controls": {
     "select": {
       "placeholder": "Please select an item",
@@ -13,40 +7,8 @@
     }
   },
   "GettingStarted": {
-    "title": "Getting Started",
-    "description": "Let's start with the name of your company"
+    "title": "Getting Started"
   },
-  "Org": {
-    "name": "Name",
-    "description": "This is your organization display name."
-  },
-  "Projects": {
-    "title": "Projects",
-    "description": "Projects are the top level container for your work.",
-    "noResults": "No projects found",
-    "select": "Select a project"
-  },
-  "ResetPassword": {
-    "button": "Forgot your password?",
-    "title": "Reset Password",
-    "description": "Please enter your email address and we'll send you a link to reset your password.",
-    "placeholder": "e.g. user@domain.com",
-    "success": "Password reset successful. You can now login with your new password.",
-    "error": "Password reset failed. Check your credentials and try again.",
-    "newPassword": "Enter your new password"
-  },
-  "LoginView": {
-    "registerLink": "Don't have an account? Register here."
-  },
-  "RegisterView": {
-    "loginLink": "Already have an account? Login here."
-  },
-  "DoTestCase": {
-    "title": "Test Case",
-    "description": "To complete this test case, please follow the steps below."
-  },
-  "login": "Login",
-  "register": "Register",
   "common": {
     "appLoading": "Logging you in, please be patient...",
     "emailAddress": "Email Address",
@@ -58,7 +20,7 @@
     "cancel": "Cancel",
     "save": "Save",
     "reset": "Reset",
-    "fullscreen": "Show in full screen",
+    "fullScreen": "Show in full screen",
     "loading": "Loading..."
   }
 }
