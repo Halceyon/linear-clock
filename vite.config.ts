@@ -37,7 +37,6 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     port: 9080,
-    host: '127.0.0.1'
   },
   resolve: {
     alias: {
@@ -51,10 +50,8 @@ export default defineConfig({
         assetFileNames: 'assets/[name]-[hash-base64-5].[ext]',
         manualChunks: {
           zod: ['zod'],
-          'tanstack/table-core': ['@tanstack/table-core'],
           'vee-validate': ['vee-validate'],
           'tailwind-merge': ['tailwind-merge'],
-          '@internationalized/date': ['@internationalized/date'],
           'iconify/vue': ['@iconify/vue'],
           lodash: ['lodash']
         }

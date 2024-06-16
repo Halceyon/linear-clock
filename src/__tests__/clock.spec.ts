@@ -1,24 +1,23 @@
-import { describe, beforeEach, it } from "node:test";
-import { clock } from "../clock";
+import { describe, expect, beforeEach, it } from "vitest";
+import { Clock } from "../clock";
 
 describe('clock', () => {
-  let clockInstance: clock;
+  let clockInstance: Clock;
 
   beforeEach(() => {
-    clockInstance = new clock({
-      onTick: () => {}
-    });
+    clockInstance = new Clock();
   });
 
-  it.only('should initialize with the current time', () => {
+  it('should initialize with the current time', () => {
     const currentTime = new Date();
     expect(clockInstance.getTime()).to.deep.equal(currentTime);
   });
 
-  it('should update the time every second', () => {
+  it('should update the time every second', async () => {
     const initialTime = clockInstance.getTime();
 
-    cy.wait(1000);
+    // sleep for 1 second
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const updatedTime = clockInstance.getTime();
     expect(updatedTime).to.be.greaterThan(initialTime);
@@ -47,8 +46,17 @@ describe('clock', () => {
 
     expect(clockInstance.isEvening()).to.be.true;
   });
+
+  it('should trigger the onTick callback every second', async () => {
+    let tickCount = 0;
+    clockInstance.onTick = () => {
+      tickCount++;
+    };
+
+    // sleep for 3 seconds with 100ms extra to allow time for the tick
+    await new Promise((resolve) => setTimeout(resolve, 3100));
+
+    expect(tickCount).to.equal(3);
+  });
 });
-function expect(arg0: Date) {
-  throw new Error("Function not implemented.");
-}
 

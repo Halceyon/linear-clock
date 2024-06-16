@@ -40,7 +40,6 @@ addons.getChannel().on('LOCALE_CHANGED', (newLocale) => {
 setup((app: App) => {
   // install plugins
   app.use(pinia);
-  app.use(logger);
   app.use(i18n);
 
   // setup provides
