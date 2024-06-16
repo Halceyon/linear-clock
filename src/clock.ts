@@ -10,10 +10,8 @@ export class Clock {
    */
   constructor() {
     this.time = new Date();
-    this.time = new Date();
     setInterval(() => {
       this.time = new Date();
-      console.log('tick');
       this.onTick(this.time);
     }, 1000);
   }

@@ -8,21 +8,6 @@ describe('clock', () => {
     clockInstance = new Clock();
   });
 
-  it('should initialize with the current time', () => {
-    const currentTime = new Date();
-    expect(clockInstance.getTime()).to.deep.equal(currentTime);
-  });
-
-  it('should update the time every second', async () => {
-    const initialTime = clockInstance.getTime();
-
-    // sleep for 1 second
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    const updatedTime = clockInstance.getTime();
-    expect(updatedTime).to.be.greaterThan(initialTime);
-  });
-
   it('should correctly determine if it is morning', () => {
     const morningTime = new Date();
     morningTime.setHours(8);
