@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fix/build-and-release-workflow
   workflow_dispatch:
 
 jobs:
@@ -58,9 +59,9 @@ jobs:
 
       - name: 🚀 Release App
         uses: tauri-apps/tauri-action@v0
-        if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: 'v${{ env.GitVersion_MajorMinorPatch }}'
           releaseName: 'v${{ env.GitVersion_MajorMinorPatch }}'
+        # if: github.ref == 'refs/heads/main'
