@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - maintenance/update-build-workflow
   workflow_dispatch:
 
 jobs:
