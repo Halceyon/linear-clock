@@ -24,7 +24,8 @@
     "storybook": "export NODE_OPTIONS=--max_old_space_size=8196 && storybook dev -p 6006 --no-open --loglevel debug",
     "storybook:build": "export NODE_OPTIONS=--max_old_space_size=8196 && storybook build",
     "storybook:docs": "export NODE_OPTIONS=--max_old_space_size=8196 && storybook build --docs",
-    "chromatic": "chromatic --project-token=chpt_a532d58262a3841 --build-script-name storybook:build"
+    "chromatic": "chromatic --project-token=chpt_a532d58262a3841 --build-script-name storybook:build",
+    "tauri": "tauri"
   },
   "dependencies": {
     "@storybook/addon-console": "^3.0.0",
