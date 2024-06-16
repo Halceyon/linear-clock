@@ -1,5 +1,5 @@
 [package]
-name = "linear-clock"
+name = "app"
 version = "0.1.0"
 description = "Linear Clock"
 authors = ["you"]
