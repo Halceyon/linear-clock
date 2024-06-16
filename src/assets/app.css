@@ -24,10 +24,3 @@ h6 {
 #app {
   height: 100%;
 }
-
-.auth-view {
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-width: 400px;
-}
