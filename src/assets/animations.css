@@ -1,0 +1,54 @@
+.slide-in-from-top {
+  animation: slide-in-from-top 1.5s ease-out;
+}
+
+.slide-in-from-top-delay-1 {
+  animation: slide-in-from-top 1.5s ease-out 1s;
+}
+
+@keyframes slide-in-from-top {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.slide-in-from-bottom {
+  animation: slide-in-from-bottom 1.5s ease-out;
+}
+
+.slide-in-from-bottom-delay-1 {
+  animation: slide-in-from-bottom 1.5s ease-out 1s;
+}
+
+@keyframes slide-in-from-bottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/*
+  Router transitions
+*/
+.slide-enter-active,
+.slide-leave-active {
+  transition: 300ms;
+}
+.slide-enter-to {
+  position: relative;
+  left: 0;
+}
+.slide-leave {
+  position: absolute;
+}
+.slide-enter {
+  left: -100vw;
+  position: absolute;
+}
+.slide-leave-to {
+  right: -100vw;
+}

@@ -1,0 +1,26 @@
+{
+  "controls": {
+    "select": {
+      "placeholder": "Please select an item",
+      "noResults": "No results found",
+      "loading": "Loading..."
+    }
+  },
+  "GettingStarted": {
+    "title": "Getting Started"
+  },
+  "common": {
+    "appLoading": "Logging you in, please be patient...",
+    "emailAddress": "Email Address",
+    "username": "Username",
+    "password": "Password",
+    "errorLoadingApp": "Oh no! Something serious has gone wrong. We've notified our engineers and they're working on it. Please try again later.",
+    "edit": "Edit",
+    "create": "Create",
+    "cancel": "Cancel",
+    "save": "Save",
+    "reset": "Reset",
+    "fullScreen": "Show in full screen",
+    "loading": "Loading..."
+  }
+}

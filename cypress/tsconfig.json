@@ -1,0 +1,15 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["./**/*.ts", "./support/**/*"],
+  "compilerOptions": {
+    "isolatedModules": false,
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node", "cypress-real-events"],
+    "baseUrl": "../",
+    "paths": {
+      "@/*": ["src/*"],
+      "@cypress/*": ["cypress/support/*"]
+    }
+  }
+}
