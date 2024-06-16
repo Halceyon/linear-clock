@@ -1,0 +1,31 @@
+assembly-versioning-scheme: MajorMinorPatch
+mode: Mainline
+commit-message-incrementing: Enabled
+major-version-bump-message: '\+semver:\s?(breaking|major)'
+minor-version-bump-message: 'feat:\s'
+patch-version-bump-message: '(chore\(deps(-dev)?\):|fix\(deps\):)'
+branches:
+  release:
+    increment: Major
+  main:
+    regex: ^main$
+    increment: Minor
+    is-mainline: true
+  fix:
+    regex: ^fix[/-]
+    increment: Patch
+    source-branches: ['main']
+  maintenance:
+    regex: ^maintenance[/-]
+    increment: Patch
+    source-branches: ['main']
+  feature:
+    regex: ^feature[/-]
+    source-branches: ['main', 'develop']
+    increment: Minor
+  pull-request:
+    regex: ^(pull|pull\-requests|pr)[/-]
+    tag: 'pre-release'
+    increment: Inherit
+    source-branches: ['main', 'develop']
+    prevent-increment-of-merged-branch-version: false

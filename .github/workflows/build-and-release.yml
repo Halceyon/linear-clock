@@ -1,0 +1,54 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install GitVersion
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+
+      - name: Determine Version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0
+        with:
+          useConfigFile: true
+
+      - name: 🔨 Install Dependencies
+        run: npm ci
+
+      - name: 🧹 Type Check
+        run: npm run type-check
+
+      - name: 🏗️ Build App
+        run: npm run build
+
+      - name: ✅ Test App
+        run: npm run test
+
+      - name: 🚀 Release App
+        uses: tauri-apps/tauri-action@v0
+        if: github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: 'v${{ env.GitVersion_MajorMinorPatch }}'
+          releaseName: 'v${{ env.GitVersion_MajorMinorPatch }}'

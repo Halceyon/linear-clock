@@ -50,7 +50,6 @@ export default defineConfig({
       output: {
         assetFileNames: 'assets/[name]-[hash-base64-5].[ext]',
         manualChunks: {
-          zod: ['zod'],
           'vee-validate': ['vee-validate'],
           'tailwind-merge': ['tailwind-merge'],
           'iconify/vue': ['@iconify/vue'],
