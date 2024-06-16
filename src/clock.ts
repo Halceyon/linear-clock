@@ -31,6 +31,16 @@ export class Clock {
     return this.time;
   }
 
+  getTimeOfDay(): TimeOfDay {
+    if (this.isMorning()) {
+      return 'morning';
+    } else if (this.isAfternoon()) {
+      return 'afternoon';
+    } else {
+      return 'evening';
+    }
+  }
+
   /**
    * Checks if the current time is in the morning (between 6 AM and 12 PM).
    * @returns True if the current time is in the morning, false otherwise.
@@ -55,3 +65,5 @@ export class Clock {
     return this.time.getHours() >= 18;
   }
 }
+
+export type TimeOfDay = 'morning' | 'afternoon' | 'evening';
