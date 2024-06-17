@@ -3,17 +3,6 @@ import pluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-/**
- * Eslint configuration options.
- * @typedef {Object} EslintConfig
- * @property {Object} languageOptions - Options for the language.
- * @property {Object} rules - Rules for the configuration.
- */
-
-/**
- * Default eslint configuration.
- * @type {EslintConfig[]}
- */
 export default [
   {
     languageOptions: {
