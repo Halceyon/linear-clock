@@ -20,7 +20,7 @@ const currentPercentage = ref(clock.getPercentageOfDay());
 </script>
 
 <template>
-  <div class="flex flex-col h-full w-full py-5">
+  <div class="flex flex-col h-full w-full p-5">
     <div class="flex justify-center h-full w-full">
       <ClockFacePart :current="currentHour" :start="0" :end="5" title="Early" />
       <ClockFacePart :current="currentHour" :start="6" :end="11" title="Morning" />
