@@ -53,7 +53,7 @@
     "@storybook/addon-interactions": "^8.0.10",
     "@storybook/addon-links": "^8.0.10",
     "@storybook/blocks": "^8.0.10",
-    "@storybook/instrumenter": "^8.0.10",
+    "@storybook/instrumenter": "^8.1.10",
     "@storybook/test": "^8.0.10",
     "@storybook/vue3": "^8.0.10",
     "@storybook/vue3-vite": "^8.0.10",
