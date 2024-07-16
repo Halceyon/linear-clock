@@ -61,6 +61,9 @@ jobs:
       - name: ✅ Run Unit Tests
         run: npm run test
 
+      - name: ✅ Run Cypress Tests
+        run: npm run test:e2e:ci
+
       - name: 📦 Install dependencies (ubuntu only)
         if: matrix.os == 'ubuntu-latest'
         run: |
@@ -78,9 +81,6 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
-
-      - name: ✅ Run Cypress Tests
-        run: npm run test:e2e:ci
 
       - name: 🚀 Release App
         uses: tauri-apps/tauri-action@v0
