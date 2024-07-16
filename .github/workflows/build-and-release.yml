@@ -87,9 +87,23 @@ jobs:
             ${{ runner.os }}-cargo-
 
       - name: 🚀 Release App
+        id: create_release
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: 'v${{ env.GitVersion_MajorMinorPatch }}'
           releaseName: 'v${{ env.GitVersion_MajorMinorPatch }}'
+
+      - name: 🗃️ Archive dist folder
+        run: tar -czvf dist.tar.gz dist
+
+      - name: ☁️ Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.releaseUploadUrl }}
+          asset_path: ./dist.tar.gz
+          asset_name: dist.tar.gz
+          asset_content_type: application/gzip
