@@ -57,7 +57,7 @@
     "@storybook/addon-links": "^8.0.10",
     "@storybook/blocks": "^8.2.3",
     "@storybook/instrumenter": "^8.0.10",
-    "@storybook/test": "^8.0.10",
+    "@storybook/test": "^8.2.3",
     "@storybook/vue3": "^8.0.10",
     "@storybook/vue3-vite": "^8.0.10",
     "@tauri-apps/cli": "^1.5.14",
