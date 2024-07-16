@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - fix/build-and-release-workflow
   workflow_dispatch:
 
 concurrency:
@@ -13,6 +12,8 @@ concurrency:
 
 jobs:
   build-and-release:
+    outputs:
+      releaseUploadUrl: ${{ steps.create_release.outputs.releaseUploadUrl }}
     runs-on: ${{ matrix.os }}
 
     permissions:
@@ -38,25 +39,29 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 📦 Install GitVersion
+        uses: gittools/actions/gitversion/setup@v1.2.0
+        with:
+          versionSpec: "5.x"
+
+      - name: 🔄 Determine Version
+        id: version_step
+        uses: gittools/actions/gitversion/execute@v1.2.0
+        with:
+          useConfigFile: true,
+          configFilePath: GitVersion.yml
+
       - name: 🛠️ Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: 📦 Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0
-        with:
-          versionSpec: '5.x'
-
-      - name: Determine Version
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v1
-        with:
-          useConfigFile: true
-
       - name: 🔨 Install Dependencies
         run: npm ci
+
+      - name: 🏗️ Build App
+        run: npm run build
 
       - name: ✅ Run Unit Tests
         run: npm run test
@@ -83,9 +88,40 @@ jobs:
             ${{ runner.os }}-cargo-
 
       - name: 🚀 Release App
+        id: create_release
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: 'v${{ env.GitVersion_MajorMinorPatch }}'
           releaseName: 'v${{ env.GitVersion_MajorMinorPatch }}'
+
+      - name: 🗃️ Archive dist folder
+        run: tar -czvf dist.tar.gz dist
+
+      - name: Publish dist folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist.tar.gz
+
+  release-web:
+    runs-on: ubuntu-latest
+    needs: build-and-release
+    permissions:
+      contents: write
+    steps:
+      - name: 📥 Download dist folder
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+
+      - name: ☁️ Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.build-and-release.outputs.releaseUploadUrl }}
+          asset_path: ./dist.tar.gz
+          asset_name: web-app.tar.gz
+          asset_content_type: application/gzip
