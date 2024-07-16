@@ -21,7 +21,7 @@
     "cy:run": "cypress run",
     "cy:run:container": "cypress run --config video=false",
     "cy:run:ci": "cypress run --record --key b60e2c44-1894-42e2-bbff-1459b6a625cb",
-    "serve:ci": "http-server-spa ../client/dist/ index.html 9080",
+    "serve:ci": "http-server-spa dist/ index.html 9080",
     "storybook": "export NODE_OPTIONS=--max_old_space_size=8196 && storybook dev -p 6006 --no-open --loglevel debug",
     "storybook:build": "export NODE_OPTIONS=--max_old_space_size=8196 && storybook build",
     "storybook:docs": "export NODE_OPTIONS=--max_old_space_size=8196 && storybook build --docs",
