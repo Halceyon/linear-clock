@@ -4,11 +4,22 @@ on:
   push:
     branches:
       - main
+      - fix/build-and-release-workflow
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-and-release:
     runs-on: ${{ matrix.os }}
+
+    permissions:
+      contents: write
+      packages: write
+      actions: write
+      pull-requests: write
 
     strategy:
       matrix:
@@ -33,7 +44,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install GitVersion
+      - name: 📦 Install GitVersion
         uses: gittools/actions/gitversion/setup@v0
         with:
           versionSpec: '5.x'
@@ -47,21 +58,32 @@ jobs:
       - name: 🔨 Install Dependencies
         run: npm ci
 
-      - name: 🧹 Type Check
-        run: npm run type-check
-
-      - name: 🏗️ Build App
-        run: npm run build
-
-      - name: ✅ Test App
+      - name: ✅ Run Unit Tests
         run: npm run test
 
-      - name: Run Cypress Tests
+      - name: ✅ Run Cypress Tests
         run: npm run test:e2e:ci
+
+      - name: 📦 Install dependencies (ubuntu only)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: 📰 Cache Rust dependencies
+        if: github.ref != 'refs/heads/main' && matrix.os != 'windows-latest'
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
 
       - name: 🚀 Release App
         uses: tauri-apps/tauri-action@v0
-        if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

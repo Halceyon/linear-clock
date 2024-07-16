@@ -36,7 +36,7 @@ for (let i = props.start; i <= props.end; i += 1) {
 }
 
 .active {
-    background-color: #00FF00;
+    background-color: #ff002b;
     opacity: 1;
 }
 </style>
