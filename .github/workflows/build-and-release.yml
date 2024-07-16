@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - fix/build-and-release-workflow
   workflow_dispatch:
 
 concurrency:
@@ -116,6 +115,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: dist
+
       - name: ☁️ Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
