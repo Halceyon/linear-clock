@@ -14,10 +14,6 @@ export default defineConfig({
     screenshotOnRunFailure: true,
     setupNodeEvents(on) {
       installLogsPrinter(on);
-    },
-    env: {
-      CYPRESS_TEST_USER: 'marvin@codehq.co.za',
-      CYPRESS_TEST_PASSWORD: 'P@ssw0rd2024'
     }
   }
 });
