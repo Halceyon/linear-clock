@@ -38,22 +38,23 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 📦 Install GitVersion
+        uses: gittools/actions/gitversion/setup@v1.2.0
+        with:
+          versionSpec: "5.x"
+
+      - name: 🔄 Determine Version
+        id: version_step
+        uses: gittools/actions/gitversion/execute@v1.2.0
+        with:
+          useConfigFile: true,
+          configFilePath: GitVersion.yml
+
       - name: 🛠️ Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
-      - name: 📦 Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0
-        with:
-          versionSpec: '5.x'
-
-      - name: Determine Version
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v1
-        with:
-          useConfigFile: true
 
       - name: 🔨 Install Dependencies
         run: npm ci
