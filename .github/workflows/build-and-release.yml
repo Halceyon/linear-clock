@@ -57,7 +57,7 @@ jobs:
         run: npm run test
 
       - name: Run Cypress Tests
-        run: npm run cy:run:ci
+        run: npm run test:e2e:ci
 
       - name: 🚀 Release App
         uses: tauri-apps/tauri-action@v0

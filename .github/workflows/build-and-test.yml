@@ -64,7 +64,7 @@ jobs:
         run: npm run test
 
       - name: Run Cypress Tests
-        run: npm run cy:run
+        run: npm run test:e2e
 
   label:
     runs-on: ubuntu-latest
