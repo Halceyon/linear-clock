@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - fix/build-and-release-workflow
   workflow_dispatch:
 
 concurrency:
@@ -105,5 +104,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.releaseUploadUrl }}
           asset_path: ./dist.tar.gz
-          asset_name: dist.tar.gz
+          asset_name: web-app.tar.gz
           asset_content_type: application/gzip
