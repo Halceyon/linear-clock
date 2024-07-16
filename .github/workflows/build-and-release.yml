@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fix/build-and-release-workflow
   workflow_dispatch:
 
 concurrency:
@@ -12,6 +13,8 @@ concurrency:
 
 jobs:
   build-and-release:
+    outputs:
+      releaseUploadUrl: ${{ steps.create_release.outputs.releaseUploadUrl }}
     runs-on: ${{ matrix.os }}
 
     permissions:
@@ -97,12 +100,28 @@ jobs:
       - name: 🗃️ Archive dist folder
         run: tar -czvf dist.tar.gz dist
 
+      - name: Publish dist folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist.tar.gz
+
+  release-web:
+    runs-on: ubuntu-latest
+    needs: build-and-release
+    permissions:
+      contents: write
+    steps:
+      - name: 📥 Download dist folder
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
       - name: ☁️ Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.releaseUploadUrl }}
+          upload_url: ${{ needs.build-and-release.outputs.releaseUploadUrl }}
           asset_path: ./dist.tar.gz
           asset_name: web-app.tar.gz
           asset_content_type: application/gzip
