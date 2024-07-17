@@ -77,7 +77,7 @@ jobs:
 
       - name: 📰 Cache Rust dependencies
         if: github.ref != 'refs/heads/main' && matrix.os != 'windows-latest'
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cargo/registry
