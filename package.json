@@ -96,7 +96,7 @@
     "vite": "^5.3.4",
     "vite-plugin-svg-sprite-component": "^1.0.10",
     "vite-plugin-vue-devtools": "^7.3.6",
-    "vitest": "^2.0.3",
+    "vitest": "^2.0.4",
     "vue-demi": "^0.14.7",
     "vue-tsc": "^2.0.26",
     "wait-port": "^1.1.0"
