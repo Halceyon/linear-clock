@@ -95,7 +95,7 @@
     "typescript": "~5.5.4",
     "vite": "^5.3.4",
     "vite-plugin-svg-sprite-component": "^1.0.10",
-    "vite-plugin-vue-devtools": "^7.3.6",
+    "vite-plugin-vue-devtools": "^7.3.7",
     "vitest": "^2.0.4",
     "vue-demi": "^0.14.7",
     "vue-tsc": "^2.0.28",
