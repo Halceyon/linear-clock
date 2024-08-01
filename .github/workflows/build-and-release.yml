@@ -78,6 +78,9 @@ jobs:
       - name: ✅ Run Unit Tests
         run: npm run test
 
+      - name: 🧪 Install Cypress
+        run: npm run cy:install
+
       - name: ✅ Run Cypress Tests
         run: npm run test:e2e:ci
 
