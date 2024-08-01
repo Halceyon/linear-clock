@@ -99,6 +99,7 @@ jobs:
           path: |
             ~/.cache/Cypress
           key: binary-${{ hashFiles('package-lock.json') }}
+        if: matrix.os != 'windows-latest'
 
       - name: 🏪 Cache Cypress Binary (windows)
         id: cache-cypress-binary-windows
@@ -107,6 +108,7 @@ jobs:
           path: |
             C:\Users\runneradmin\AppData\Local\Cypress\Cache
           key: binary-${{ hashFiles('package-lock.json') }}
+        if: matrix.os == 'windows-latest'
 
       - name: 🧪 Install Cypress
         run: npm run cy:install
