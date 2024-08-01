@@ -39,6 +39,7 @@ jobs:
           echo "IsPR: ${{ steps.set_flags.outputs.IsPR }}"
 
   build-app:
+    name: "🏗️ Build App"
     runs-on: ubuntu-latest
 
     steps:
