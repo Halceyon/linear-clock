@@ -1,4 +1,4 @@
-name: Build and Test
+name: ✅ Build and Test
 
 on:
   pull_request:
@@ -39,6 +39,7 @@ jobs:
           echo "IsPR: ${{ steps.set_flags.outputs.IsPR }}"
 
   build-app:
+    name: "🏗️ Build App"
     runs-on: ubuntu-latest
 
     steps:

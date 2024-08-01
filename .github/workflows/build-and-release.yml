@@ -1,4 +1,4 @@
-name: Build and Release
+name: 🚀 Build and Release
 
 on:
   push:
@@ -93,28 +93,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: 'v${{ env.GitVersion_MajorMinorPatch }}'
-          releaseName: 'v${{ env.GitVersion_MajorMinorPatch }}'
+          tagName: 'v${{ steps.version_step.outputs.semVer }}'
+          releaseName: 'v${{ steps.version_step.outputs.semVer }}'
 
       - name: 🗃️ Archive dist folder
         run: tar -czvf dist.tar.gz dist
-
-      - name: Publish dist folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist.tar.gz
-
-  release-web:
-    runs-on: ubuntu-latest
-    needs: build-and-release
-    permissions:
-      contents: write
-    steps:
-      - name: 📥 Download dist folder
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
+        if: matrix.os == 'ubuntu-latest'
 
       - name: ☁️ Upload Release Asset
         uses: actions/upload-release-asset@v1
@@ -125,3 +109,4 @@ jobs:
           asset_path: ./dist.tar.gz
           asset_name: web-app.tar.gz
           asset_content_type: application/gzip
+        if: matrix.os == 'ubuntu-latest'
