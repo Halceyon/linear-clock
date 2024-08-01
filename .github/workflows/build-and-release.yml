@@ -105,7 +105,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ needs.build-and-release.outputs.releaseUploadUrl }}
+          upload_url: ${{ needs.create_release.outputs.releaseUploadUrl }}
           asset_path: ./dist.tar.gz
           asset_name: web-app.tar.gz
           asset_content_type: application/gzip
