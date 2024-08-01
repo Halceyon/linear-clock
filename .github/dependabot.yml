@@ -6,6 +6,8 @@ updates:
     schedule:
       interval: weekly
     target-branch: maintenance/update-packages
+    labels:
+      - dependencies
     open-pull-requests-limit: 10
     reviewers:
       - halceyon
@@ -23,6 +25,29 @@ updates:
       interval: daily
       time: "00:00"
     target-branch: maintenance/update-packages
+    labels:
+      - dependencies
+      - npm
+    open-pull-requests-limit: 10
+    reviewers:
+      - halceyon
+    assignees:
+      - halceyon
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
+
+  # Fetch and update latest `cargo` packages
+  - package-ecosystem: cargo
+    directory: "/src-tauri"
+    schedule:
+      interval: daily
+      time: "00:00"
+    target-branch: maintenance/update-packages
+    labels:
+      - dependencies
+      - cargo
     open-pull-requests-limit: 10
     reviewers:
       - halceyon
@@ -40,6 +65,8 @@ updates:
       interval: daily
       time: "00:00"
     target-branch: maintenance/update-packages
+    labels:
+      - dependencies
     open-pull-requests-limit: 10
     reviewers:
       - halceyon
