@@ -51,6 +51,17 @@ jobs:
           useConfigFile: true,
           configFilePath: GitVersion.yml
 
+      - name: 🏪 Cache Node modules
+        id: cache-node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            "**/node_modules"
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: 🛠️ Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -59,6 +70,7 @@ jobs:
 
       - name: 🔨 Install Dependencies
         run: npm ci
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - name: 🏗️ Build App
         run: npm run build
@@ -75,8 +87,31 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
 
-      - name: Cache Rust dependencies
-        uses: Swatinem/rust-cache@v2
+      - name: 📰 Cache Rust dependencies
+        if: github.ref != 'refs/heads/main' && matrix.os != 'windows-latest'
+        uses: actions/cache@v4
+        with:
+          path: |
+            $HOME/.cargo/bin/
+            $HOME/.cargo/registry/index/
+            $HOME/.cargo/registry/cache/
+            $HOME/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: 📰 Cache Rust dependencies
+        if: github.ref != 'refs/heads/main' && matrix.os != 'windows-latest'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
 
       - name: 🚀 Release App
         uses: tauri-apps/tauri-action@v0
