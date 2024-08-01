@@ -79,8 +79,25 @@ jobs:
       - name: ✅ Run Unit Tests
         run: npm run test
 
+      - name: 🏪 Cache Cypress Binary (mac and ubuntu)
+        id: cache-cypress-binary
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/Cypress
+          key: binary-${{ hashFiles('package-lock.json') }}
+
+      - name: 🏪 Cache Cypress Binary (windows)
+        id: cache-cypress-binary-windows
+        uses: actions/cache@v2
+        with:
+          path: |
+            C:\Users\runneradmin\AppData\Local\Cypress\Cache
+          key: binary-${{ hashFiles('package-lock.json') }}
+
       - name: 🧪 Install Cypress
         run: npm run cy:install
+        if: steps.cache-cypress-binary.outputs.cache-hit != 'true' || steps.cache-cypress-binary-windows.outputs.cache-hit != 'true'
 
       - name: ✅ Run Cypress Tests
         run: npm run test:e2e:ci
