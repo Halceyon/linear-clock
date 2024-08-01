@@ -88,7 +88,6 @@ jobs:
           sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
 
       - name: 📰 Cache Rust dependencies
-        if: github.ref != 'refs/heads/main' && matrix.os != 'windows-latest'
         uses: actions/cache@v4
         with:
           path: |
@@ -121,7 +120,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ needs.create_release.outputs.releaseUploadUrl }}
+          upload_url: ${{ steps.create_release.outputs.releaseUploadUrl }}
           asset_path: ./dist.tar.gz
           asset_name: web-app.tar.gz
           asset_content_type: application/gzip
