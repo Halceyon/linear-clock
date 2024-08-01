@@ -105,7 +105,7 @@ jobs:
             ${{ runner.os }}-cargo-
         if: matrix.os != 'windows-latest'
 
-      - name: 📰 Cache Rust dependencies (mac and ubuntu)
+      - name: 📰 Cache Rust dependencies (windows)
         uses: actions/cache@v4
         with:
           path: |
