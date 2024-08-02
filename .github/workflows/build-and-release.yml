@@ -94,7 +94,7 @@ jobs:
 
       - name: 🏪 Cache Cypress Binary (mac and ubuntu)
         id: cache-cypress-binary
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cache/Cypress
@@ -103,7 +103,7 @@ jobs:
 
       - name: 🏪 Cache Cypress Binary (windows)
         id: cache-cypress-binary-windows
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             C:\Users\runneradmin\AppData\Local\Cypress\Cache
