@@ -98,7 +98,7 @@
     "vite-plugin-vue-devtools": "^7.4.0",
     "vitest": "^2.0.5",
     "vue-demi": "^0.14.10",
-    "vue-tsc": "^2.1.4",
+    "vue-tsc": "^2.1.6",
     "wait-port": "^1.1.0"
   },
   "description": "This template should help get you started developing with Vue 3 in Vite.",
