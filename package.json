@@ -87,7 +87,7 @@
     "prettier": "^3.3.3",
     "r": "^0.0.5",
     "rollup-plugin-analyzer": "^4.0.0",
-    "start-server-and-test": "^2.0.6",
+    "start-server-and-test": "^2.0.7",
     "storybook": "^8.2.9",
     "storybook-dark-mode": "^4.0.2",
     "storybook-i18n": "^3.1.1",
