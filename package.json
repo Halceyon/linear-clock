@@ -54,7 +54,7 @@
     "@storybook/addon-actions": "^8.3.0",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
-    "@storybook/addon-links": "^8.2.9",
+    "@storybook/addon-links": "^8.3.0",
     "@storybook/blocks": "^8.2.7",
     "@storybook/instrumenter": "^8.3.0",
     "@storybook/test": "^8.2.9",
