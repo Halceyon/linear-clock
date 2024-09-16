@@ -73,7 +73,7 @@
     "cypress": "^13.14.2",
     "cypress-mochawesome-reporter": "^3.8.2",
     "cypress-real-events": "^1.12.0",
-    "cypress-terminal-report": "^6.2.0",
+    "cypress-terminal-report": "^7.0.2",
     "eslint": "^9.10.0",
     "eslint-define-config": "^2.1.0",
     "eslint-plugin-cypress": "^3.5.0",
