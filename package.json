@@ -53,7 +53,7 @@
     "@rushstack/eslint-patch": "^1.10.4",
     "@storybook/addon-actions": "^8.3.1",
     "@storybook/addon-essentials": "^8.3.2",
-    "@storybook/addon-interactions": "^8.3.1",
+    "@storybook/addon-interactions": "^8.3.2",
     "@storybook/addon-links": "^8.3.2",
     "@storybook/blocks": "^8.3.2",
     "@storybook/instrumenter": "^8.3.2",
