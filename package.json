@@ -37,7 +37,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "lucide-vue-next": "^0.446.0",
-    "pinia": "^2.2.2",
+    "pinia": "^2.2.3",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "vaul-vue": "^0.2.0",
