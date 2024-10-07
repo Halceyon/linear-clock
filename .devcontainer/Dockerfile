@@ -11,11 +11,10 @@ RUN apt-get update
 
 # Install packages for Cypress
 RUN export DEBIAN_FRONTEND=noninteractive \
-      && apt-get -y install --no-install-recommends libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      && apt-get -y install --no-install-recommends libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libxtst6 xauth xvfb
 
 # Install packages for Tauri
-RUN export DEBIAN_FRONTEND=noninteractive \
-      && apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+RUN apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
 
 # Install Firefox
 # RUN apt-get install -y firefox-esr
@@ -27,4 +26,4 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 # RUN apt-get install -y microsoft-edge-stable
 
 # Clean up
-RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+# RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
