@@ -83,7 +83,7 @@
     "jsdom": "^25.0.1",
     "msw": "^2.5.0",
     "msw-storybook-addon": "^2.0.3",
-    "npm-run-all2": "^7.0.0",
+    "npm-run-all2": "^7.0.1",
     "prettier": "^3.3.3",
     "r": "^0.0.5",
     "rollup-plugin-analyzer": "^4.0.0",
