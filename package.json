@@ -84,7 +84,7 @@
     "msw": "^2.6.6",
     "msw-storybook-addon": "^2.0.4",
     "npm-run-all2": "^7.0.1",
-    "prettier": "^3.4.1",
+    "prettier": "^3.4.2",
     "r": "^0.0.5",
     "rollup-plugin-analyzer": "^4.0.0",
     "start-server-and-test": "^2.0.8",
