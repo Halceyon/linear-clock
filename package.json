@@ -47,7 +47,7 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.16.0",
+    "@eslint/js": "^9.17.0",
     "@faker-js/faker": "^9.3.0",
     "@iconify/vue": "^4.2.0",
     "@rushstack/eslint-patch": "^1.10.4",
